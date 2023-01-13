@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
-class TransactionsList extends StatefulWidget {
-  @override
-  _TransactionsListState createState() => _TransactionsListState();
-}
-
-class _TransactionsListState extends State<TransactionsList> {
-  List<Transaction> transactions = [
-    Transaction(
-        id: 1,
-        title: 'Novo tênis de corrida',
-        value: 310.76,
-        date: DateTime.now()),
-    Transaction(
-        id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
-  ];
-
+class TransactionsList extends StatelessWidget {
   String dateFormatter(String date) {
     List<String> dateList = date.toString().split(' ');
     String day = dateList[0];
     String time = dateList[1].toString().split('.')[0];
     return '$day $time';
   }
+
+  final List<Transaction> transactions;
+
+  TransactionsList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
