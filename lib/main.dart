@@ -38,6 +38,24 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Minhas finanças'),
         ),
         body: Column(children: [
+          Container(
+            padding: EdgeInsets.all(2),
+            child: Card(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: const [
+                    TextField(decoration: InputDecoration(labelText: "Título")),
+                    TextField(
+                      decoration: InputDecoration(labelText: "Valor"),
+                    ),
+                    TextButton(
+                      onPressed: null,
+                      child: Text("Criar"),
+                    )
+                  ]),
+            ),
+          ),
           ...(transactions
               .map((transaction) => SizedBox(
                     height: 80,
@@ -53,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                                     bottom: BorderSide(
                                         color: Colors.yellow, width: 2))),
                             child: Text(
-                              "\$ ${transaction.value.toString()}",
+                              "R\$ ${transaction.value.toString()}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17),
                             ),
