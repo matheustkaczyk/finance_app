@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
-  final textTitleController = TextEditingController();
+  final textTitleController;
 
-  final textValueController = TextEditingController();
+  final textValueController;
+
+  VoidCallback createBtnClick;
+
+  NewTransaction(
+      this.textTitleController, this.textValueController, this.createBtnClick);
 
   Widget build(BuildContext context) {
     return Card(
@@ -23,7 +28,7 @@ class NewTransaction extends StatelessWidget {
                   controller: textValueController,
                 ),
                 TextButton(
-                  onPressed: () => {},
+                  onPressed: createBtnClick,
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.green),
                     foregroundColor: MaterialStateProperty.all(Colors.white),

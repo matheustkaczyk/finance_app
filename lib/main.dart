@@ -7,14 +7,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  void createBtnClick() {
-    // transactions.add(Transaction(
-    //     id: transactions.length + 1,
-    //     title: textTitleController.text,
-    //     value: double.parse(textValueController.text),
-    //     date: DateTime.now()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

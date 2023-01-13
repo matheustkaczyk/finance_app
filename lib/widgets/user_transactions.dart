@@ -10,7 +10,7 @@ class UserTransactions extends StatefulWidget {
 }
 
 class _UserTransactionsState extends State<UserTransactions> {
-  List<Transaction> transactions = [
+  List<Transaction> _transactions = [
     Transaction(
         id: 1,
         title: 'Novo tênis de corrida',
@@ -20,10 +20,28 @@ class _UserTransactionsState extends State<UserTransactions> {
         id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
+  final textTitleController = TextEditingController();
+
+  final textValueController = TextEditingController();
+
+  void _createTransactionClick() {
+    return setState(() {
+      _transactions.add(Transaction(
+          id: _transactions.length + 1,
+          title: textTitleController.text,
+          value: double.parse(textValueController.text),
+          date: DateTime.now()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [NewTransaction(), TransactionsList(transactions)],
+      children: [
+        NewTransaction(
+            textTitleController, textValueController, _createTransactionClick),
+        TransactionsList(_transactions)
+      ],
     );
   }
 }
