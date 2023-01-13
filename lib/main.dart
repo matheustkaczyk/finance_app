@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:finance_app/transaction.dart';
+import 'package:finance_app/models/transaction.dart';
 
 void main() {
   runApp(MyApp());
