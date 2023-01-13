@@ -23,6 +23,13 @@ class _MyAppState extends State<MyApp> {
         id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
+  String dateFormatter(String date) {
+    List<String> dateList = date.toString().split(' ');
+    String day = dateList[0];
+    String time = dateList[1].toString().split('.')[0];
+    return '$day $time';
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                transaction.date.toString(),
+                                dateFormatter(transaction.date.toString()),
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white60,
