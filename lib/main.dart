@@ -30,9 +30,29 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Minhas finanças'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+        body: Column(children: [
+          ...(transactions
+              .map((transaction) => Card(
+                    margin: const EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          color: Colors.yellowAccent,
+                          padding: const EdgeInsets.all(10),
+                          child: Text("\$ ${transaction.value.toString()}"),
+                        ),
+                        Column(
+                          children: [
+                            Text(transaction.title),
+                            Text(transaction.date.toString()),
+                          ],
+                        )
+                      ],
+                    ),
+                  ))
+              .toList())
+        ]),
       ),
     );
   }
