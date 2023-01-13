@@ -32,23 +32,46 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(children: [
           ...(transactions
-              .map((transaction) => Card(
-                    margin: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          color: Colors.yellowAccent,
-                          padding: const EdgeInsets.all(10),
-                          child: Text("\$ ${transaction.value.toString()}"),
-                        ),
-                        Column(
-                          children: [
-                            Text(transaction.title),
-                            Text(transaction.date.toString()),
-                          ],
-                        )
-                      ],
+              .map((transaction) => SizedBox(
+                    height: 80,
+                    child: Card(
+                      color: Colors.lightBlue,
+                      margin: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.yellow, width: 2))),
+                            child: Text(
+                              "\$ ${transaction.value.toString()}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                transaction.title,
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              Text(
+                                transaction.date.toString(),
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white60,
+                                    fontWeight: FontWeight.w800),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ))
               .toList())
