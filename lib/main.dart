@@ -1,18 +1,12 @@
-import 'package:finance_app/transaction.dart';
 import 'package:flutter/material.dart';
 
+import 'package:finance_app/transaction.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   List<Transaction> transactions = [
     Transaction(
         id: 1,
@@ -23,11 +17,23 @@ class _MyAppState extends State<MyApp> {
         id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
+  final textTitleController = TextEditingController();
+
+  final textValueController = TextEditingController();
+
   String dateFormatter(String date) {
     List<String> dateList = date.toString().split(' ');
     String day = dateList[0];
     String time = dateList[1].toString().split('.')[0];
     return '$day $time';
+  }
+
+  void createBtnClick() {
+    transactions.add(Transaction(
+        id: transactions.length + 1,
+        title: textTitleController.text,
+        value: double.parse(textValueController.text),
+        date: DateTime.now()));
   }
 
   @override
@@ -44,14 +50,24 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    TextField(decoration: InputDecoration(labelText: "Título")),
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: "Título"),
+                      controller: textTitleController,
+                    ),
                     TextField(
                       decoration: InputDecoration(labelText: "Valor"),
+                      controller: textValueController,
                     ),
                     TextButton(
-                      onPressed: null,
-                      child: Text("Criar"),
+                      onPressed: createBtnClick,
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
+                      child: const Text("Criar"),
                     )
                   ]),
             ),
