@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Minhas finanças'),
-        ),
-        body: UserTransactions(),
-      ),
+          appBar: AppBar(
+            title: const Text('Minhas finanças'),
+          ),
+          body: SingleChildScrollView(
+            child: UserTransactions(),
+          )),
     );
   }
 }
