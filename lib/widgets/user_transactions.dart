@@ -10,7 +10,7 @@ class UserTransactions extends StatefulWidget {
 }
 
 class _UserTransactionsState extends State<UserTransactions> {
-  List<Transaction> _transactions = [
+  final List<Transaction> _transactions = [
     Transaction(
         id: 1,
         title: 'Novo tênis de corrida',
