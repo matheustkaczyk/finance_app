@@ -29,7 +29,10 @@ class NewTransaction extends StatelessWidget {
                   decoration: const InputDecoration(labelText: "Valor"),
                   controller: textValueController,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,2}')),
+                  ],
                   onSubmitted: (_) => createBtnClick(),
                 ),
                 TextButton(
