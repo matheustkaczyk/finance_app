@@ -60,6 +60,9 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (_) {
       return;
+    } finally {
+      textTitleController.clear();
+      textValueController.clear();
     }
   }
 
