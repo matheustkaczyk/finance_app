@@ -13,6 +13,12 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(
             title: const Text('Minhas finanças'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {},
+              )
+            ],
           ),
           body: SingleChildScrollView(
             child: UserTransactions(),
