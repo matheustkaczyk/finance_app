@@ -63,6 +63,8 @@ class _HomePageState extends State<HomePage> {
     } finally {
       textTitleController.clear();
       textValueController.clear();
+
+      Navigator.of(context).pop();
     }
   }
 
