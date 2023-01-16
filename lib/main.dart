@@ -11,18 +11,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Minhas finanças'),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {},
-              )
-            ],
-          ),
-          body: SingleChildScrollView(
-            child: UserTransactions(),
-          )),
+        appBar: AppBar(
+          title: const Text('Minhas finanças'),
+        ),
+        body: SingleChildScrollView(
+          child: UserTransactions(),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {},
+        ),
+      ),
     );
   }
 }
