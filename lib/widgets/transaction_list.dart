@@ -31,7 +31,7 @@ class TransactionsList extends StatelessWidget {
                                 bottom: BorderSide(
                                     color: Colors.yellow, width: 2))),
                         child: Text(
-                          "R\$ ${transaction.value.toString()}",
+                          "R\$ ${transaction.value.toStringAsFixed(2)}",
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
                         ),
