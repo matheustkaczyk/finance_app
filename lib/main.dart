@@ -72,11 +72,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minhas finanças'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => _startAddNewTransaction(context),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: TransactionsList(_transactions),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _startAddNewTransaction(context),
