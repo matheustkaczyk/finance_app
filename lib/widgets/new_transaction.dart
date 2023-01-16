@@ -23,14 +23,14 @@ class NewTransaction extends StatelessWidget {
                 TextField(
                   decoration: const InputDecoration(labelText: "Título"),
                   controller: textTitleController,
-                  onSubmitted: (_) => createBtnClick,
+                  onSubmitted: (_) => createBtnClick(),
                 ),
                 TextField(
                   decoration: const InputDecoration(labelText: "Valor"),
                   controller: textValueController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  onSubmitted: (_) => createBtnClick,
+                  onSubmitted: (_) => createBtnClick(),
                 ),
                 TextButton(
                   onPressed: createBtnClick,
