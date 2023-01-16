@@ -21,40 +21,42 @@ class TransactionsList extends StatelessWidget {
                 height: 80,
                 child: Card(
                   color: Colors.lightBlue,
-                  margin: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(8),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        decoration: const BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: Colors.yellow, width: 2))),
+                        padding: EdgeInsets.only(left: 15),
                         child: Text(
                           "R\$ ${transaction.value.toStringAsFixed(2)}",
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.amberAccent),
                         ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            transaction.title,
-                            style: const TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          Text(
-                            dateFormatter(transaction.date.toString()),
-                            style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.white60,
-                                fontWeight: FontWeight.w800),
-                          )
-                        ],
-                      )
+                      Container(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                transaction.title,
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              Text(
+                                dateFormatter(transaction.date.toString()),
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white60,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ))
                     ],
                   ),
                 ),
