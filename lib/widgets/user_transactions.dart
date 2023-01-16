@@ -25,13 +25,22 @@ class _UserTransactionsState extends State<UserTransactions> {
   final textValueController = TextEditingController();
 
   void _createTransactionClick() {
-    return setState(() {
-      _transactions.add(Transaction(
-          id: _transactions.length + 1,
-          title: textTitleController.text,
-          value: double.parse(textValueController.text),
-          date: DateTime.now()));
-    });
+    try {
+      String titleValue = textTitleController.text;
+      double value = double.parse(textValueController.text);
+
+      if (titleValue.isEmpty || value <= 0) return;
+
+      return setState(() {
+        _transactions.add(Transaction(
+            id: _transactions.length + 1,
+            title: titleValue,
+            value: value,
+            date: DateTime.now()));
+      });
+    } catch (_) {
+      return;
+    }
   }
 
   @override
