@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewTransaction extends StatelessWidget {
   final textTitleController;
@@ -26,6 +27,8 @@ class NewTransaction extends StatelessWidget {
                 TextField(
                   decoration: const InputDecoration(labelText: "Valor"),
                   controller: textValueController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
                 TextButton(
                   onPressed: createBtnClick,
