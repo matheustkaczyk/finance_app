@@ -36,13 +36,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Transaction> _transactions = [
-    Transaction(
-        id: 1,
-        title: 'Novo tênis de corrida',
-        value: 310.76,
-        date: DateTime.now()),
-    Transaction(
-        id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
+    // Transaction(
+    //     id: 1,
+    //     title: 'Novo tênis de corrida',
+    //     value: 310.76,
+    //     date: DateTime.now()),
+    // Transaction(
+    //     id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
   void _createTransactionClick() {

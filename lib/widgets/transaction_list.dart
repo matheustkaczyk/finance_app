@@ -1,3 +1,4 @@
+import 'package:finance_app/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
@@ -20,27 +21,22 @@ class _TransactionsListState extends State<TransactionsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ...(widget.transactions
-          .map((transaction) => SizedBox(
-              height: 80,
-              child: Dismissible(
-                key: UniqueKey(),
-                direction: DismissDirection.horizontal,
-                onDismissed: (direction) => {
-                  setState((() => {
-                        widget.transactions
-                            .removeWhere((trans) => trans.id == transaction.id),
-                      }))
-                },
-                child: Card(
+    return Container(
+      height: 600,
+      child: widget.transactions.isEmpty == true
+          ? NotFound('Nenhum registro encontrado ainda!')
+          : ListView.builder(
+              itemCount: widget.transactions.length,
+              itemBuilder: (context, index) {
+                final transaction = widget.transactions[index];
+                return Card(
                   color: Colors.lightBlue,
                   margin: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 15),
+                        padding: const EdgeInsets.only(left: 15),
                         child: Text(
                           "R\$ ${transaction.value.toStringAsFixed(2)}",
                           style: const TextStyle(
@@ -50,7 +46,7 @@ class _TransactionsListState extends State<TransactionsList> {
                         ),
                       ),
                       Container(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: const EdgeInsets.only(left: 15),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,16 +62,16 @@ class _TransactionsListState extends State<TransactionsList> {
                                 dateFormatter(transaction.date.toString()),
                                 style: const TextStyle(
                                     fontSize: 12,
-                                    color: Colors.white60,
-                                    fontWeight: FontWeight.w800),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
                               ),
                             ],
-                          ))
+                          )),
                     ],
                   ),
-                ),
-              )))
-          .toList())
-    ]);
+                );
+              },
+            ),
+    );
   }
 }
