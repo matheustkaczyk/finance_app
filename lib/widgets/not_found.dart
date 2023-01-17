@@ -9,6 +9,7 @@ class NotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           text,
@@ -16,7 +17,9 @@ class NotFound extends StatelessWidget {
             fontSize: 35,
             fontWeight: FontWeight.bold,
             color: Colors.blueAccent,
+            decoration: TextDecoration.underline,
           ),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 50,
