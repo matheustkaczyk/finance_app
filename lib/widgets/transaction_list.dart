@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
-class TransactionsList extends StatelessWidget {
+class TransactionsList extends StatefulWidget {
+  final List<Transaction> transactions;
+
+  TransactionsList(this.transactions);
+
+  @override
+  State<TransactionsList> createState() => _TransactionsListState();
+}
+
+class _TransactionsListState extends State<TransactionsList> {
   String dateFormatter(String date) {
     List<String> dateList = date.toString().split(' ');
     String day = dateList[0];
@@ -9,16 +18,21 @@ class TransactionsList extends StatelessWidget {
     return '$day $time';
   }
 
-  final List<Transaction> transactions;
-
-  TransactionsList(this.transactions);
-
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      ...(transactions
+      ...(widget.transactions
           .map((transaction) => SizedBox(
-                height: 80,
+              height: 80,
+              child: Dismissible(
+                key: UniqueKey(),
+                direction: DismissDirection.horizontal,
+                onDismissed: (direction) => {
+                  setState((() => {
+                        widget.transactions
+                            .removeWhere((trans) => trans.id == transaction.id),
+                      }))
+                },
                 child: Card(
                   color: Colors.lightBlue,
                   margin: const EdgeInsets.all(8),
@@ -60,7 +74,7 @@ class TransactionsList extends StatelessWidget {
                     ],
                   ),
                 ),
-              ))
+              )))
           .toList())
     ]);
   }
