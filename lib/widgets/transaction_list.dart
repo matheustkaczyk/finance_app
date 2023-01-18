@@ -30,7 +30,7 @@ class _TransactionsListState extends State<TransactionsList> {
               itemBuilder: (context, index) {
                 final transaction = widget.transactions[index];
                 return Dismissible(
-                  key: Key(widget.transactions[index].toString()),
+                  key: UniqueKey(),
                   onDismissed: (direction) => {
                     setState(() {
                       widget.transactions.removeAt(index);
