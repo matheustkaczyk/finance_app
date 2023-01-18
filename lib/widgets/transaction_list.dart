@@ -39,6 +39,9 @@ class _TransactionsListState extends State<TransactionsList> {
                   child: Card(
                     color: Colors.lightBlue,
                     margin: const EdgeInsets.all(8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                     elevation: 4,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +57,7 @@ class _TransactionsListState extends State<TransactionsList> {
                           ),
                         ),
                         Container(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: const EdgeInsets.all(10),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
