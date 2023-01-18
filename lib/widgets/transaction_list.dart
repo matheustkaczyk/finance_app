@@ -39,6 +39,7 @@ class _TransactionsListState extends State<TransactionsList> {
                   child: Card(
                     color: Colors.lightBlue,
                     margin: const EdgeInsets.all(8),
+                    elevation: 4,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
