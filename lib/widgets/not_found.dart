@@ -15,9 +15,8 @@ class NotFound extends StatelessWidget {
           text,
           style: const TextStyle(
             fontSize: 35,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w200,
             color: Colors.blueAccent,
-            decoration: TextDecoration.underline,
           ),
           textAlign: TextAlign.center,
         ),
