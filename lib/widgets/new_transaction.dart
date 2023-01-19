@@ -13,11 +13,27 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final _textTitleController = TextEditingController();
   final _textValueController = TextEditingController();
+  DateTime? _selectedDate;
 
+  void presentDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2021),
+            lastDate: DateTime.now())
+        .then((value) {
+      if (value == null) return;
+      setState(() {
+        _selectedDate = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -28,22 +44,25 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => {},
             ),
             TextField(
-                decoration: const InputDecoration(labelText: "Valor"),
-                controller: _textValueController,
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
-                ],
-                onSubmitted: (_) => widget.createTransactionClick(
-                      _textTitleController.text,
-                      double.parse(_textValueController.text),
-                      null,
-                    )),
+              decoration: const InputDecoration(labelText: "Valor"),
+              controller: _textValueController,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+              ],
+              // onSubmitted: (_) => widget.createTransactionClick(
+              //       _textTitleController.text,
+              //       double.parse(_textValueController.text),
+              //       _selectedDate,
+              //     )
+            ),
             Row(
               children: [
-                Text("Nenhuma data selecionada!"),
+                _selectedDate == null
+                    ? const Text("Nenhuma data selecionada!")
+                    : Text(_selectedDate.toString()),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: presentDatePicker,
                   child: const Text(
                     "Selecionar Data",
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -55,7 +74,7 @@ class _NewTransactionState extends State<NewTransaction> {
               onPressed: () => widget.createTransactionClick(
                   _textTitleController.text,
                   double.parse(_textValueController.text),
-                  null),
+                  _selectedDate),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.green),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
