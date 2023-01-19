@@ -1,3 +1,4 @@
+import 'package:finance_app/widgets/chart.dart';
 import 'package:finance_app/widgets/new_transaction.dart';
 import 'package:finance_app/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,14 @@ class _HomePageState extends State<HomePage> {
     //     id: 2, title: 'Conta de luz', value: 211.30, date: DateTime.now()),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((transaction) {
+      return transaction.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
+
   void _createTransactionClick() {
     try {
       String titleValue = textTitleController.text;
@@ -86,7 +95,12 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: TransactionsList(_transactions),
+        child: Column(
+          children: [
+            Chart(_transactions),
+            TransactionsList(_transactions),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
