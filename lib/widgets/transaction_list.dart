@@ -21,7 +21,7 @@ class _TransactionsListState extends State<TransactionsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 600,
       child: widget.transactions.isEmpty == true
           ? NotFound('Nenhum registro encontrado ainda!')
