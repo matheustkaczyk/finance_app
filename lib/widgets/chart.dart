@@ -29,8 +29,17 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get totalSpending {
+    return groupedTransactionsValues.fold(0.0, (sum, item) {
+      return sum + (item['value'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Card();
+    return Card(
+      elevation: 6,
+      child: Row(children: []),
+    );
   }
 }
