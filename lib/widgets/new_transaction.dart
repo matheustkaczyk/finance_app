@@ -60,7 +60,8 @@ class _NewTransactionState extends State<NewTransaction> {
               children: [
                 _selectedDate == null
                     ? const Text("Nenhuma data selecionada!")
-                    : Text(_selectedDate.toString()),
+                    : Text(
+                        "Data selecionada: ${_selectedDate.toString().split(' ')[0]}"),
                 TextButton(
                   onPressed: presentDatePicker,
                   child: const Text(
