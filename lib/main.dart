@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Chart(_transactions),
+            Chart(_recentTransactions),
             TransactionsList(_transactions),
           ],
         ),
