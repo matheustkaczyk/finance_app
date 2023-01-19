@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  void _createTransactionClick(String title, double value, DateTime? date) {
+  void _createTransactionClick(String title, double value, DateTime date) {
     try {
       if (title.isEmpty || value <= 0) return;
 
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             id: _transactions.length + 1,
             title: title,
             value: value,
-            date: date ?? DateTime.now()));
+            date: date != null ? date : DateTime.now()));
       });
     } catch (_) {
       return;
