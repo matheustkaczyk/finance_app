@@ -39,8 +39,8 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6,
-      child: Row(children: [
+      elevation: 3,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         ...groupedTransactionsValues.map((data) {
           return Flexible(
             fit: FlexFit.tight,
