@@ -1,5 +1,6 @@
-import 'package:finance_app/widgets/not_found.dart';
 import 'package:flutter/material.dart';
+
+import 'package:finance_app/widgets/not_found.dart';
 import '../models/transaction.dart';
 
 class TransactionsList extends StatefulWidget {
@@ -48,12 +49,15 @@ class _TransactionsListState extends State<TransactionsList> {
                       children: [
                         Container(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            "R\$ ${transaction.value.toStringAsFixed(2)}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.amberAccent),
+                          width: 100,
+                          child: FittedBox(
+                            child: Text(
+                              "R\$ ${transaction.value.toStringAsFixed(2)}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.amberAccent),
+                            ),
                           ),
                         ),
                         Container(
