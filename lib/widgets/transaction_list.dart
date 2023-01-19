@@ -16,8 +16,7 @@ class _TransactionsListState extends State<TransactionsList> {
   String dateFormatter(String date) {
     List<String> dateList = date.toString().split(' ');
     String day = dateList[0];
-    String time = dateList[1].toString().split('.')[0];
-    return '$day $time';
+    return '$day';
   }
 
   @override
