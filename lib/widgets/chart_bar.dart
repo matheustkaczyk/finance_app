@@ -1,3 +1,4 @@
+import 'package:finance_app/helpers/weekDayTranslator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,7 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
+        Text(WeekDayTranslator().translate(label))
       ],
     );
   }
