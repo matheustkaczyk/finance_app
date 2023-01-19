@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NewTransaction extends StatefulWidget {
-  final textTitleController;
+  final Function createTransactionClick;
 
-  final textValueController;
-
-  VoidCallback createBtnClick;
-
-  NewTransaction(
-      this.textTitleController, this.textValueController, this.createBtnClick);
+  NewTransaction(this.createTransactionClick);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
 }
 
 class _NewTransactionState extends State<NewTransaction> {
+  final _textTitleController = TextEditingController();
+  final _textValueController = TextEditingController();
+
   Widget build(BuildContext context) {
     return Container(
       height: 300,
@@ -26,18 +24,21 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               decoration: const InputDecoration(labelText: "Título"),
-              controller: widget.textTitleController,
+              controller: _textTitleController,
               onSubmitted: (_) => {},
             ),
             TextField(
-              decoration: const InputDecoration(labelText: "Valor"),
-              controller: widget.textValueController,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
-              ],
-              onSubmitted: (_) => widget.createBtnClick(),
-            ),
+                decoration: const InputDecoration(labelText: "Valor"),
+                controller: _textValueController,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                ],
+                onSubmitted: (_) => widget.createTransactionClick(
+                      _textTitleController.text,
+                      double.parse(_textValueController.text),
+                      null,
+                    )),
             Row(
               children: [
                 Text("Nenhuma data selecionada!"),
@@ -51,7 +52,10 @@ class _NewTransactionState extends State<NewTransaction> {
               ],
             ),
             TextButton(
-              onPressed: widget.createBtnClick,
+              onPressed: () => widget.createTransactionClick(
+                  _textTitleController.text,
+                  double.parse(_textValueController.text),
+                  null),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.green),
                 foregroundColor: MaterialStateProperty.all(Colors.white),

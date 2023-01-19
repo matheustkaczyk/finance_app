@@ -31,8 +31,7 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         context: ctx,
         builder: (_) {
-          return NewTransaction(textTitleController, textValueController,
-              _createTransactionClick);
+          return NewTransaction(_createTransactionClick);
         });
   }
 
@@ -54,33 +53,23 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  void _createTransactionClick() {
+  void _createTransactionClick(String title, double value, DateTime? date) {
     try {
-      String titleValue = textTitleController.text;
-      double value = double.parse(textValueController.text);
+      if (title.isEmpty || value <= 0) return;
 
-      if (titleValue.isEmpty || value <= 0) return;
-
-      return setState(() {
+      setState(() {
         _transactions.add(Transaction(
             id: _transactions.length + 1,
-            title: titleValue,
+            title: title,
             value: value,
-            date: DateTime.now()));
+            date: date ?? DateTime.now()));
       });
     } catch (_) {
       return;
-    } finally {
-      textTitleController.clear();
-      textValueController.clear();
-
-      Navigator.of(context).pop();
     }
+    Navigator.of(context).pop();
+    return;
   }
-
-  final textTitleController = TextEditingController();
-
-  final textValueController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
