@@ -53,22 +53,28 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  void _createTransactionClick(String title, double value, DateTime date) {
+  void _createTransactionClick(String title, double value, DateTime? date) {
     try {
-      if (title.isEmpty || value <= 0) return;
+      if (title.isEmpty || value <= 0 || date == null) return;
 
       setState(() {
         _transactions.add(Transaction(
             id: _transactions.length + 1,
             title: title,
             value: value,
-            date: date != null ? date : DateTime.now()));
+            date: date));
       });
     } catch (_) {
       return;
     }
     Navigator.of(context).pop();
     return;
+  }
+
+  void _deleteTransaction(int id) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == id);
+    });
   }
 
   @override
@@ -87,7 +93,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Chart(_recentTransactions),
-            TransactionsList(_transactions),
+            TransactionsList(_transactions, _deleteTransaction),
           ],
         ),
       ),
