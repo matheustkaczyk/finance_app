@@ -18,7 +18,7 @@ class TransactionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600,
+      height: 450,
       child: transactions.isEmpty == true
           ? NotFound('Nenhum registro encontrado ainda!')
           : ListView.builder(

@@ -45,15 +45,15 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  void _createTransactionClick(String title, double value, DateTime? date) {
+  void _createTransactionClick(String title, String value, DateTime? date) {
     try {
-      if (title.isEmpty || value <= 0 || date == null) return;
+      if (title.isEmpty || double.parse(value) <= 0 || date == null) return;
 
       setState(() {
         _transactions.add(Transaction(
             id: _transactions.length + 1,
             title: title,
-            value: value,
+            value: double.parse(value),
             date: date));
       });
     } catch (_) {

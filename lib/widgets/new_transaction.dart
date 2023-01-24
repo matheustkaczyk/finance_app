@@ -74,7 +74,7 @@ class _NewTransactionState extends State<NewTransaction> {
             TextButton(
               onPressed: () => widget.createTransactionClick(
                   _textTitleController.text,
-                  double.parse(_textValueController.text),
+                  _textValueController.text,
                   _selectedDate),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.green),
