@@ -1,5 +1,4 @@
 import 'package:finance_app/helpers/weekDayTranslator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
@@ -11,16 +10,18 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
+    return LayoutBuilder(builder: (ctx, contraints) {
+      return Column(
         children: [
-          FittedBox(child: Text('\$${spendingAmount.toStringAsFixed(0)}')),
-          const SizedBox(
-            height: 4,
+          Container(
+              height: contraints.maxHeight * 0.10,
+              child: FittedBox(
+                  child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
+          SizedBox(
+            height: contraints.maxHeight * 0.05,
           ),
           SizedBox(
-            height: 60,
+            height: contraints.maxHeight * 0.6,
             width: 10,
             child: Stack(
               children: [
@@ -43,9 +44,12 @@ class ChartBar extends StatelessWidget {
               ],
             ),
           ),
-          Text(WeekDayTranslator().translate(label))
+          Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child:
+                  FittedBox(child: Text(WeekDayTranslator().translate(label))))
         ],
-      ),
-    );
+      );
+    });
   }
 }
